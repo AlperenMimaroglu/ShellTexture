@@ -1,16 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[SelectionBase]
 public class Shell : MonoBehaviour
 {
     [SerializeField] GameObject layerPrefab;
     [SerializeField] Shader shellShader;
 
-    [Range(1, 32), SerializeField] int layerCount;
-    [Range(0, 1), SerializeField] float offset = 0.1f;
-    List<Material> layerMaterials = new();
+    [Range(1, 64), SerializeField] int layerCount = 32;
+    [Range(0.1f, 5f), SerializeField] float furLength = 0.5f;
+    [Range(1, 500), SerializeField] float scale = 100;
+
+    readonly List<Material> layerMaterials = new();
 
     static readonly int SizeID = Shader.PropertyToID("_Size");
+    static readonly int FurLengthID = Shader.PropertyToID("_FurLength");
+    static readonly int ScaleID = Shader.PropertyToID("_Scale");
     static readonly int LayerID = Shader.PropertyToID("_Layer");
     int CurrentLayerCount => transform.childCount;
 
@@ -22,8 +27,8 @@ public class Shell : MonoBehaviour
             var difference = layerCount - CurrentLayerCount;
             for (int i = 0; i < difference; i++)
             {
-                var instancePosition = new Vector3(0, transform.childCount * offset, 0);
-                var layerInstance = Instantiate(layerPrefab, instancePosition, Quaternion.identity, transform);
+                // var instancePosition = new Vector3(0, transform.childCount * offset, 0);
+                var layerInstance = Instantiate(layerPrefab, Vector3.zero, Quaternion.identity, transform);
                 layerInstance.name = $"Layer_{transform.childCount}";
                 layerMaterials.Add(layerInstance.GetComponent<Renderer>().material);
             }
@@ -50,15 +55,11 @@ public class Shell : MonoBehaviour
                 layerMaterials[i].SetFloat(LayerID, Mathf.Lerp(0, 1, (float)i / layerMaterials.Count));
             }
         }
-    }
 
-    void OnValidate()
-    {
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < layerMaterials.Count; i++)
         {
-            var newPosition = transform.GetChild(i).transform.position;
-            newPosition.y = i * offset;
-            transform.GetChild(i).transform.position = newPosition;
+            layerMaterials[i].SetFloat(FurLengthID, furLength);
+            layerMaterials[i].SetFloat(ScaleID, scale);
         }
     }
 }

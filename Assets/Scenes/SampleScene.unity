@@ -156,8 +156,9 @@ MonoBehaviour:
     type: 3}
   shellShader: {fileID: -6465566751694194690, guid: 6d2c08038a7ca42c1bd4de989c588cb8,
     type: 3}
-  layerCount: 14
-  offset: 0.1
+  layerCount: 32
+  furLength: 0.5
+  scale: 100
 --- !u!4 &87302195
 Transform:
   m_ObjectHideFlags: 0
@@ -259,13 +260,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 8, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
