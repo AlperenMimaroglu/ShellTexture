@@ -38,12 +38,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Density: 64
     - _FurLength: 0.001
     - _Layer: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 100
-    - _Size: 8
+    - _Size: 64
     m_Colors:
     - _BottomColor: {r: 0, g: 0.50980395, b: 0, a: 1}
     - _Color: {r: 0, g: 1, b: 0, a: 1}

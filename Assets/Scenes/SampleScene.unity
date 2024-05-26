@@ -158,7 +158,7 @@ MonoBehaviour:
     type: 3}
   layerCount: 32
   furLength: 0.5
-  scale: 100
+  density: 256
 --- !u!4 &87302195
 Transform:
   m_ObjectHideFlags: 0

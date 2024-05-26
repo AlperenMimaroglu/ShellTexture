@@ -9,13 +9,12 @@ public class Shell : MonoBehaviour
 
     [Range(1, 64), SerializeField] int layerCount = 32;
     [Range(0.1f, 5f), SerializeField] float furLength = 0.5f;
-    [Range(1, 500), SerializeField] float scale = 100;
+    [Range(1, 512), SerializeField] int density = 256;
 
     readonly List<Material> layerMaterials = new();
 
-    static readonly int SizeID = Shader.PropertyToID("_Size");
+    static readonly int DensityID = Shader.PropertyToID("_Density");
     static readonly int FurLengthID = Shader.PropertyToID("_FurLength");
-    static readonly int ScaleID = Shader.PropertyToID("_Scale");
     static readonly int LayerID = Shader.PropertyToID("_Layer");
     int CurrentLayerCount => transform.childCount;
 
@@ -59,7 +58,7 @@ public class Shell : MonoBehaviour
         for (int i = 0; i < layerMaterials.Count; i++)
         {
             layerMaterials[i].SetFloat(FurLengthID, furLength);
-            layerMaterials[i].SetFloat(ScaleID, scale);
+            layerMaterials[i].SetFloat(DensityID, density);
         }
     }
 }
